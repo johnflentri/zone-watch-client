@@ -8,7 +8,6 @@ export default class AuthForm extends React.Component {
       <h5>Username</h5>
       <input
         onChange={event => {
-          console.log('event.target test:', event.target)
           onChange('username', event)
         }}
         type='text'
@@ -17,7 +16,6 @@ export default class AuthForm extends React.Component {
       <h5>Email</h5>
       <input
         onChange={event => {
-          console.log('event.target test:', event.target)
           onChange('email', event)
         }}
         type='text'
