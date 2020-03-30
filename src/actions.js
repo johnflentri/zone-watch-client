@@ -7,11 +7,11 @@ export const ALL_POSTS = "ALL_POSTS"
 export const NEW_POST = "NEW_POST"
 export const ALL_COMMENTS = "ALL_COMMENTS"
 export const NEW_COMMENT = "NEW_COMMENT"
+export const CURRENT_USER = 'CURRENT_USER'
 
 const baseUrl = 'http://localhost:4000'
 
 function loggedIn(jwt) {
-  console.log("jwt", jwt)
   return {
     type: LOGGED_IN,
     payload: jwt
@@ -134,3 +134,21 @@ export const createComment = (data, commentId) => (dispatch, getState) => {
     })
     .catch(console.error)
 }
+
+function currentUser(payload) {
+  return {
+    type: "CURRENT_USER",
+    payload
+  }
+}
+
+export const getCurrentUser = () => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request.get(`${baseUrl}/user`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .then(response => {
+      const action = currentUser(response.body);
+      dispatch(action);
+    });
+};
