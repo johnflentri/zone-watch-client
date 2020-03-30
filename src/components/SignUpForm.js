@@ -19,7 +19,6 @@ export default class SignupForm extends React.Component {
   render() {
     return <AuthFormContainer
       submit={this.submit}
-      description='signed up'
       title='Sign up'
     />
   }

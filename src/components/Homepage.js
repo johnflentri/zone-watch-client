@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import SignupForm from './SignUpForm'
 import LogInForm from './LogInForm'
 import Locations from './Locations'
+import Newsfeed from './Newsfeed'
 
 class Homepage extends Component {
   render() {
     if (this.props.user) {
       return <div>
+        <Newsfeed />
         <Locations />
       </div>
     } else

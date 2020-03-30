@@ -11,7 +11,6 @@ class LoginForm extends Component {
   render() {
     return <AuthFormContainer
       submit={this.submit}
-      description='logged in'
       title='Log in'
     />
   }
