@@ -91,15 +91,3 @@ export const createPost = (data, postId) => (dispatch, getState) => {
     })
     .catch(console.error)
 }
-
-// export const fetchUniqueUser = user => ({
-//   type: "FETCH_UNIQUE_USER",
-//   payload: user
-// });
-
-// export const getUniqueUser = id => dispatch => {
-//   request.get(`${baseUrl}/user/${id}`).then(response => {
-//     const action = fetchUniqueUser(response.body);
-//     dispatch(action);
-//   });
-// };
