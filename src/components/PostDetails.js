@@ -26,7 +26,7 @@ class PostDetails extends Component {
         <h3>{thisPost.title}</h3>
         <p>{thisPost.content}</p>
         <p>posted by {thisPost.userId} at the following time: {thisPost.createdAt}</p>
-        <Comments />
+        <Comments postId={postId} />
         <CreateCommentContainer postId={postId} />
       </div>
     )
