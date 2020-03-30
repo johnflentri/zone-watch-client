@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { getLocations } from "../actions";
+import Posts from './Posts'
 
 class LocationDetails extends Component {
   componentDidMount() {
@@ -17,7 +18,8 @@ class LocationDetails extends Component {
 
     return (
       <div>
-        {findLocation.name}
+        <h3>{findLocation.name}</h3>
+        <Posts locationId={locationId} />
       </div>
     )
   }
