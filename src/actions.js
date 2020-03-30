@@ -5,6 +5,8 @@ export const LOGGED_IN = "LOGGED_IN"
 export const ALL_LOCATIONS = "ALL_LOCATIONS"
 export const ALL_POSTS = "ALL_POSTS"
 export const NEW_POST = "NEW_POST"
+export const ALL_COMMENTS = "ALL_COMMENTS"
+export const NEW_COMMENT = "NEW_COMMENT"
 
 const baseUrl = 'http://localhost:4000'
 
@@ -92,14 +94,43 @@ export const createPost = (data, postId) => (dispatch, getState) => {
     .catch(console.error)
 }
 
-// export const fetchUniqueUser = user => ({
-//   type: "FETCH_UNIQUE_USER",
-//   payload: user
-// });
+function allComments(payload) {
+  return {
+    type: ALL_COMMENTS,
+    payload
+  }
+}
 
-// export const getUniqueUser = id => dispatch => {
-//   request.get(`${baseUrl}/user/${id}`).then(response => {
-//     const action = fetchUniqueUser(response.body);
-//     dispatch(action);
-//   });
-// };
+export const getComments = () => (dispatch, getState) => {
+  const state = getState()
+  const { comments } = state
+  if (!comments.length) {
+    request(`${baseUrl}/comment`)
+      .then(response => {
+        const action = allComments(response.body)
+        dispatch(action)
+      })
+      .catch(console.error)
+  }
+}
+
+function newComment(payload) {
+  return {
+    type: NEW_COMMENT,
+    payload
+  }
+}
+
+export const createComment = (data, commentId) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request
+    .post(`${baseUrl}/comment`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send(data, commentId)
+    .then(response => {
+      const action = newComment(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
+}
