@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
-import posts from './posts'
-import locations from './locations'
 import user from './user'
+import locations from './locations'
+import posts from './posts'
+import comments from './comments'
 
 export default combineReducers({
-  posts,
+  user,
   locations,
-  user
+  posts,
+  comments
 })

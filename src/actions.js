@@ -5,6 +5,8 @@ export const LOGGED_IN = "LOGGED_IN"
 export const ALL_LOCATIONS = "ALL_LOCATIONS"
 export const ALL_POSTS = "ALL_POSTS"
 export const NEW_POST = "NEW_POST"
+export const ALL_COMMENTS = "ALL_COMMENTS"
+export const NEW_COMMENT = "NEW_COMMENT"
 
 const baseUrl = 'http://localhost:4000'
 
@@ -87,6 +89,47 @@ export const createPost = (data, postId) => (dispatch, getState) => {
     .send(data, postId)
     .then(response => {
       const action = newPost(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
+}
+
+function allComments(payload) {
+  return {
+    type: ALL_COMMENTS,
+    payload
+  }
+}
+
+export const getComments = () => (dispatch, getState) => {
+  const state = getState()
+  const { comments } = state
+  if (!comments.length) {
+    request(`${baseUrl}/comment`)
+      .then(response => {
+        const action = allComments(response.body)
+        dispatch(action)
+      })
+      .catch(console.error)
+  }
+}
+
+function newComment(payload) {
+  return {
+    type: NEW_COMMENT,
+    payload
+  }
+}
+
+export const createComment = (data, commentId) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request
+    .post(`${baseUrl}/comment`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send(data, commentId)
+    .then(response => {
+      const action = newComment(response.body)
       dispatch(action)
     })
     .catch(console.error)
