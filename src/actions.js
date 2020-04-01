@@ -62,9 +62,10 @@ function allPosts(payload) {
 
 export const getPosts = () => (dispatch, getState) => {
   const state = getState()
-  const { posts } = state
+  const { posts, user } = state
   if (!posts.length) {
     request(`${baseUrl}/post`)
+      .set('Authorization', `Bearer ${user.jwt}`)
       .then(response => {
         const action = allPosts(response.body)
         dispatch(action)
