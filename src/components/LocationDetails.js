@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { getLocations } from "../actions";
+import { getLocationPosts } from "../actions";
 import Posts from './Posts'
 
 class LocationDetails extends Component {
   componentDidMount() {
-    this.props.getLocations();
+    this.props.getLocationPosts(this.props.match.params.id);
   }
 
   render() {
@@ -27,8 +27,9 @@ class LocationDetails extends Component {
 
 const mapStateToProps = state => ({
   locationsList: state.locations,
+  locationPostsList: state.posts
 });
 
-const mapDispatchToProps = { getLocations };
+const mapDispatchToProps = { getLocationPosts };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationDetails);

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
-import { getPosts } from '../actions'
+import { getLocationPosts } from '../actions'
 import CreatePostContainer from './CreatePostContainer';
 
 class Posts extends Component {
   componentDidMount() {
-    this.props.getPosts();
+    this.props.getLocationPosts();
   }
 
   render() {
@@ -51,6 +51,6 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapDispatchToProps = { getPosts };
+const mapDispatchToProps = { getLocationPosts };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

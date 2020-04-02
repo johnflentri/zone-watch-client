@@ -17,7 +17,7 @@ class Locations extends Component {
     const mappedLocations = locationsList.map(location => (
       <div key={location.id}>
         <ul>
-          <Link to={`/locations/${location.id}`}>{location.name} </Link>
+          <Link to={`/locationPosts/${location.id}`}>{location.name} </Link>
         </ul>
       </div>
     ))

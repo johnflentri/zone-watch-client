@@ -4,6 +4,7 @@ import request from 'superagent'
 export const LOGGED_IN = "LOGGED_IN"
 export const ALL_LOCATIONS = "ALL_LOCATIONS"
 export const ALL_POSTS = "ALL_POSTS"
+export const ALL_LOCATION_POSTS = "ALL_LOCATION_POSTS"
 export const NEW_POST = "NEW_POST"
 export const ALL_COMMENTS = "ALL_COMMENTS"
 export const NEW_COMMENT = "NEW_COMMENT"
@@ -62,16 +63,30 @@ function allPosts(payload) {
 
 export const getPosts = () => (dispatch, getState) => {
   const state = getState()
-  const { posts, user } = state
-  if (!posts.length) {
-    request(`${baseUrl}/post`)
-      .set('Authorization', `Bearer ${user.jwt}`)
-      .then(response => {
-        const action = allPosts(response.body)
-        dispatch(action)
-      })
-      .catch(console.error)
+  const { user } = state
+  request(`${baseUrl}/post`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .then(response => {
+      const action = allPosts(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
+}
+
+function allLocationPosts(payload) {
+  return {
+    type: ALL_LOCATION_POSTS,
+    payload
   }
+}
+
+export const getLocationPosts = (id) => (dispatch) => {
+  request(`${baseUrl}/locationPosts/${id}`)
+    .then(response => {
+      const action = allLocationPosts(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
 }
 
 function newPost(payload) {

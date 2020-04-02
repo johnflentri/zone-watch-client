@@ -11,14 +11,9 @@ class Newsfeed extends Component {
   }
 
   render() {
-    console.log("PROPS", this.props)
-
     if (!this.props.currentUser) {
       return <div>Loading...</div>
     }
-
-    // const currentUser = this.props.currentUser.id
-    // console.log("currentUser", currentUser)
 
     if (!this.props.postsList) {
       return <div>Loading...</div>
