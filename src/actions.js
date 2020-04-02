@@ -9,6 +9,8 @@ export const NEW_POST = "NEW_POST"
 export const ALL_COMMENTS = "ALL_COMMENTS"
 export const NEW_COMMENT = "NEW_COMMENT"
 export const CURRENT_USER = 'CURRENT_USER'
+export const ADD_USER_LOCATION = 'ADD_USER_LOCATION'
+export const REMOVE_USER_LOCATION = 'REMOVE_USER_LOCATION'
 
 const baseUrl = 'http://localhost:4000'
 
@@ -153,7 +155,7 @@ export const createComment = (data, commentId) => (dispatch, getState) => {
 
 function currentUser(payload) {
   return {
-    type: "CURRENT_USER",
+    type: CURRENT_USER,
     payload
   }
 }
@@ -168,3 +170,41 @@ export const getCurrentUser = () => (dispatch, getState) => {
       dispatch(action);
     });
 };
+
+function addUserLocation(payload) {
+  return {
+    type: ADD_USER_LOCATION,
+    payload
+  }
+}
+
+export const addLocation = (locationId) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request.post(`${baseUrl}/userLocations`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send({ locationId })
+    .then(response => {
+      const action = addUserLocation(response.body)
+      dispatch(action)
+    })
+}
+
+function removeUserLocation(payload) {
+  return {
+    type: REMOVE_USER_LOCATION,
+    payload
+  }
+}
+
+export const removeLocation = (locationId) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request.delete(`${baseUrl}/userLocations`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send({ locationId })
+    .then(response => {
+      const action = removeUserLocation(response.body)
+      dispatch(action)
+    })
+}
