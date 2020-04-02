@@ -1,12 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
-import { getPosts } from '../actions'
+import { getLocationPosts, addLocation, removeLocation } from '../actions'
 import CreatePostContainer from './CreatePostContainer';
 
 class Posts extends Component {
   componentDidMount() {
-    this.props.getPosts();
+    this.props.getLocationPosts();
+  }
+
+  handleAddClick = event => {
+    event.preventDefault()
+    const { locationId } = this.props
+    this.props.addLocation(locationId)
+  }
+
+  handleRemoveClick = event => {
+    const { locationId } = this.props
+    event.preventDefault()
+    this.props.removeLocation(locationId)
   }
 
   render() {
@@ -30,6 +42,7 @@ class Posts extends Component {
     if (!this.props.user) {
       return (
         <div>
+          <button>Add this location to my newsfeed</button>
           <h4>Posts:</h4>
           {mappedPosts}
         </div>
@@ -37,6 +50,8 @@ class Posts extends Component {
     } else {
       return (
         <div>
+          <button onClick={this.handleAddClick}>Add this location to my newsfeed</button>
+          <button onClick={this.handleRemoveClick}>Remove this location from my newsfeed</button>
           <CreatePostContainer locationId={locationId} />
           <h4>Posts:</h4>
           {mappedPosts}
@@ -51,6 +66,6 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapDispatchToProps = { getPosts };
+const mapDispatchToProps = { getLocationPosts, addLocation, removeLocation };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

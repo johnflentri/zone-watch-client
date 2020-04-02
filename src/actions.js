@@ -4,10 +4,13 @@ import request from 'superagent'
 export const LOGGED_IN = "LOGGED_IN"
 export const ALL_LOCATIONS = "ALL_LOCATIONS"
 export const ALL_POSTS = "ALL_POSTS"
+export const ALL_LOCATION_POSTS = "ALL_LOCATION_POSTS"
 export const NEW_POST = "NEW_POST"
 export const ALL_COMMENTS = "ALL_COMMENTS"
 export const NEW_COMMENT = "NEW_COMMENT"
 export const CURRENT_USER = 'CURRENT_USER'
+export const ADD_USER_LOCATION = 'ADD_USER_LOCATION'
+export const REMOVE_USER_LOCATION = 'REMOVE_USER_LOCATION'
 
 const baseUrl = 'http://localhost:4000'
 
@@ -62,16 +65,30 @@ function allPosts(payload) {
 
 export const getPosts = () => (dispatch, getState) => {
   const state = getState()
-  const { posts, user } = state
-  if (!posts.length) {
-    request(`${baseUrl}/post`)
-      .set('Authorization', `Bearer ${user.jwt}`)
-      .then(response => {
-        const action = allPosts(response.body)
-        dispatch(action)
-      })
-      .catch(console.error)
+  const { user } = state
+  request(`${baseUrl}/post`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .then(response => {
+      const action = allPosts(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
+}
+
+function allLocationPosts(payload) {
+  return {
+    type: ALL_LOCATION_POSTS,
+    payload
   }
+}
+
+export const getLocationPosts = (id) => (dispatch) => {
+  request(`${baseUrl}/locationPosts/${id}`)
+    .then(response => {
+      const action = allLocationPosts(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
 }
 
 function newPost(payload) {
@@ -138,7 +155,7 @@ export const createComment = (data, commentId) => (dispatch, getState) => {
 
 function currentUser(payload) {
   return {
-    type: "CURRENT_USER",
+    type: CURRENT_USER,
     payload
   }
 }
@@ -153,3 +170,41 @@ export const getCurrentUser = () => (dispatch, getState) => {
       dispatch(action);
     });
 };
+
+function addUserLocation(payload) {
+  return {
+    type: ADD_USER_LOCATION,
+    payload
+  }
+}
+
+export const addLocation = (locationId) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request.post(`${baseUrl}/userLocations`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send({ locationId })
+    .then(response => {
+      const action = addUserLocation(response.body)
+      dispatch(action)
+    })
+}
+
+function removeUserLocation(payload) {
+  return {
+    type: REMOVE_USER_LOCATION,
+    payload
+  }
+}
+
+export const removeLocation = (locationId) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request.delete(`${baseUrl}/userLocations`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send({ locationId })
+    .then(response => {
+      const action = removeUserLocation(response.body)
+      dispatch(action)
+    })
+}
