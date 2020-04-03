@@ -11,6 +11,7 @@ export const NEW_COMMENT = "NEW_COMMENT"
 export const CURRENT_USER = 'CURRENT_USER'
 export const ADD_USER_LOCATION = 'ADD_USER_LOCATION'
 export const REMOVE_USER_LOCATION = 'REMOVE_USER_LOCATION'
+export const CREATE_LOCATION = 'CREATE_LOCATION'
 
 const baseUrl = 'http://localhost:4000'
 
@@ -45,9 +46,10 @@ function allLocations(payload) {
 
 export const getLocations = () => (dispatch, getState) => {
   const state = getState()
-  const { locations } = state
+  const { locations, user } = state
   if (!locations.length) {
     request(`${baseUrl}/location`)
+      .set('Authorization', `Bearer ${user.jwt}`)
       .then(response => {
         const action = allLocations(response.body)
         dispatch(action)
@@ -82,8 +84,11 @@ function allLocationPosts(payload) {
   }
 }
 
-export const getLocationPosts = (id) => (dispatch) => {
+export const getLocationPosts = (id) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
   request(`${baseUrl}/locationPosts/${id}`)
+    .set('Authorization', `Bearer ${user.jwt}`)
     .then(response => {
       const action = allLocationPosts(response.body)
       dispatch(action)
@@ -207,4 +212,25 @@ export const removeLocation = (locationId) => (dispatch, getState) => {
       const action = removeUserLocation(response.body)
       dispatch(action)
     })
+}
+
+function newLocation(payload) {
+  return {
+    type: CREATE_LOCATION,
+    payload
+  }
+}
+
+export const createLocation = (data) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request
+    .post(`${baseUrl}/location`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send(data)
+    .then(response => {
+      const action = newLocation(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
 }

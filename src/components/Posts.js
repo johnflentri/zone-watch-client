@@ -16,8 +16,8 @@ class Posts extends Component {
   }
 
   handleRemoveClick = event => {
-    const { locationId } = this.props
     event.preventDefault()
+    const { locationId } = this.props
     this.props.removeLocation(locationId)
   }
 

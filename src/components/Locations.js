@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { getLocations } from "../actions";
 import { Link } from "react-router-dom";
+import CreateLocationContainer from './CreateLocationContainer';
 
 class Locations extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class Locations extends Component {
     return (
       <div>
         <h4>Locations Page</h4>
+        <CreateLocationContainer />
         {mappedLocations}
       </div>
     )
