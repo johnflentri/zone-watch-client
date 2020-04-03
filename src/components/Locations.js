@@ -14,6 +14,28 @@ class Locations extends Component {
       return <div>Loading...</div>
     }
 
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      const coord = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${coord.latitude}`);
+      console.log(`Longitude: ${coord.longitude}`);
+      console.log(`More or less ${coord.accuracy} meters.`);
+
+    }
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
     const { locationsList } = this.props
     const mappedLocations = locationsList.map(location => (
       <div key={location.id}>

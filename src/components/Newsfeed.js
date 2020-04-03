@@ -11,10 +11,6 @@ class Newsfeed extends Component {
   }
 
   render() {
-    if (!this.props.currentUser) {
-      return <div>Loading...</div>
-    }
-
     if (!this.props.postsList) {
       return <div>Loading...</div>
     }
@@ -22,7 +18,7 @@ class Newsfeed extends Component {
     const mappedPosts = this.props.postsList.map(post => (
       <div key={post.id}>
         <ul>
-          <Link to={`/posts/${post.id}`}>{post.title} </Link>
+          <span><Link to={`/posts/${post.id}`}>{post.title} </Link> from location: {post.locationId}</span>
           <p>Posted by user: {post.userId}</p>
           <p>Date and time of post: {post.createdAt}</p>
         </ul>

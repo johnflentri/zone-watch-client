@@ -12,6 +12,7 @@ export const CURRENT_USER = 'CURRENT_USER'
 export const ADD_USER_LOCATION = 'ADD_USER_LOCATION'
 export const REMOVE_USER_LOCATION = 'REMOVE_USER_LOCATION'
 export const CREATE_LOCATION = 'CREATE_LOCATION'
+export const USER_GEO = 'USER_GEO'
 
 const baseUrl = 'http://localhost:4000'
 
@@ -230,6 +231,27 @@ export const createLocation = (data) => (dispatch, getState) => {
     .send(data)
     .then(response => {
       const action = newLocation(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
+}
+
+function userGeo(payload) {
+  return {
+    type: USER_GEO,
+    payload
+  }
+}
+
+export const currentGeo = (lat, lng, id) => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request
+    .put(`${baseUrl}/user/${id}`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .send(lat, lng)
+    .then(response => {
+      const action = userGeo(response.body)
       dispatch(action)
     })
     .catch(console.error)
