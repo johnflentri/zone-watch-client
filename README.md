@@ -29,11 +29,38 @@ Users can also create a zone channel if one does not already exist for their int
 
 ### `Technology used`
 
-### `Goals for this project`
+- React
+- Redux
+- Express
+- Sequelize
+- Geolocation
+
+### `Goal for this project`
+
+To build a functioning full-stack application using the technologies taught during the coding bootcamp as well as any feature-related technologies we wished to implement.
+
+This includes practicing and recognizing the importance of:
+
+- planning and design
+- time management and prioritization
+- independent research
+- disciplined git usage
 
 ### `User stories and Wireframe`
 
+- As a user, I want to be able to sign up and login with my account
+- As a user, I want to be able to post to a particular zone
+- As a user, I want to be able to comment on a particular post
+- As a user, I want to be able to see other user's posts and comments
+- As a user, I want to see zone channels that are close to me
+- As a user, I want to be able to add/remove zones from my newsfeed
+
 ### `Git workflow`
+
+In this project I implement:
+
+- Concise commit messages
+- Descriptive branch names
 
 ### `Server repository`
 
