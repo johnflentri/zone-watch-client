@@ -5,6 +5,7 @@ import Homepage from './components/Homepage';
 import Locations from './components/Locations';
 import LocationDetails from './components/LocationDetails'
 import PostDetails from './components/PostDetails'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   render() {

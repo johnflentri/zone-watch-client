@@ -22,12 +22,9 @@ class Locations extends Component {
 
     function success(pos) {
       const coord = pos.coords;
-
-      console.log('Your current position is:');
       console.log(`Latitude : ${coord.latitude}`);
       console.log(`Longitude: ${coord.longitude}`);
-      console.log(`More or less ${coord.accuracy} meters.`);
-
+      console.log(`Accurate to approximately ${coord.accuracy} meters.`);
     }
 
     function error(err) {
