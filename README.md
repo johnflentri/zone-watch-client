@@ -55,6 +55,10 @@ This includes practicing and recognizing the importance of:
 - As a user, I want to see zone channels that are close to me
 - As a user, I want to be able to add/remove zones from my newsfeed
 
+![Sign_up_Log_in](https://user-images.githubusercontent.com/54505503/78504277-54bbf980-776c-11ea-9489-c61dbb0918fb.png)
+![Homepage](https://user-images.githubusercontent.com/54505503/78504303-98aefe80-776c-11ea-9fbf-2b3b27507528.png)
+![Comment](https://user-images.githubusercontent.com/54505503/78504311-a49ac080-776c-11ea-9ff6-cee915e30eb3.png)
+
 ### `Git workflow`
 
 In this project I implement:
