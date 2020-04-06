@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { getLocations, currentGeo } from "../actions";
+import { getLocations } from "../actions";
 import { Link } from "react-router-dom";
 import CreateLocationContainer from './CreateLocationContainer';
+import getDistanceInKm from '../functionality/distanceKm'
 
 class Locations extends Component {
   state = {
@@ -12,7 +13,6 @@ class Locations extends Component {
 
   componentDidMount() {
     this.props.getLocations();
-    // this.props.currentGeo();
     this.getLocation()
   }
 
@@ -30,7 +30,6 @@ class Locations extends Component {
   getCoordinates = position => {
     const { latitude, longitude } = position.coords;
     this.setState({ lat: latitude, lng: longitude });
-    // this.props.currentGeo({ lat: latitude, lng: longitude })
   };
 
   handleLocationError = error => {
@@ -54,12 +53,33 @@ class Locations extends Component {
     }
   };
 
-  render() {
-    console.log("Coordinates in state", this.state)
+  sortingLocations = arr => {
+    const sorted = arr.sort((a, b) => {
+      a = getDistanceInKm(
+        this.state.lat,
+        this.state.lng,
+        a.lat,
+        a.lng
+      );
+      b = getDistanceInKm(
+        this.state.lat,
+        this.state.lng,
+        b.lat,
+        b.lng
+      );
 
+      return a - b;
+    });
+    return sorted;
+  };
+
+
+  render() {
     if (!this.props.locationsList) {
       return <div>Loading...</div>
     }
+
+    this.sortingLocations(this.props.locationsList)
 
     const { locationsList } = this.props
     const mappedLocations = locationsList.map(location => (
@@ -84,6 +104,6 @@ const mapStateToProps = state => ({
   locationsList: state.locations,
 });
 
-const mapDispatchToProps = { getLocations, currentGeo };
+const mapDispatchToProps = { getLocations };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Locations);
