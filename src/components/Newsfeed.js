@@ -28,7 +28,7 @@ class Newsfeed extends Component {
     return (
       <div>
         <h4>Newsfeed:</h4>
-        {mappedPosts}
+        {mappedPosts.reverse()}
       </div>
     );
   }
