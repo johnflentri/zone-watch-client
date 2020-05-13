@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route } from "react-router";
-import './index.css';
 import Homepage from './components/Homepage';
 import Locations from './components/Locations';
 import LocationDetails from './components/LocationDetails'

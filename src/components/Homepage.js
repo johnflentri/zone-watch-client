@@ -2,18 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SignupForm from './SignUpForm'
 import LogInForm from './LogInForm'
-import Locations from './Locations'
 import Newsfeed from './Newsfeed'
 
 class Homepage extends Component {
   render() {
     if (this.props.user) {
-      return <div>
+      return <div className="centerDefault">
         <Newsfeed />
-        <Locations />
       </div>
     } else
-      return <div>
+      return <div className="centerDefault">
         <SignupForm />
         <LogInForm />
       </div>

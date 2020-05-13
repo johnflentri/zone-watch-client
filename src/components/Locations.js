@@ -91,7 +91,7 @@ class Locations extends Component {
     ))
 
     return (
-      <div>
+      <div className="centerDefault">
         <h4>Locations Page</h4>
         <CreateLocationContainer />
         {mappedLocations}

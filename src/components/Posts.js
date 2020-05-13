@@ -22,10 +22,10 @@ class Posts extends Component {
   }
 
   render() {
-    const { locationId } = this.props
+    const { locationId, locationName } = this.props
 
     if (!this.props.postsList) {
-      return <div>Loading...</div>
+      return <div className="centerDefault">Loading...</div>
     }
 
     const postsFilter = this.props.postsList.filter(post => post.locationId === locationId)
@@ -41,7 +41,7 @@ class Posts extends Component {
 
     if (!this.props.user) {
       return (
-        <div>
+        <div className="centerDefault">
           <button>Add this location to my newsfeed</button>
           <h4>Posts:</h4>
           {mappedPosts}
@@ -49,7 +49,8 @@ class Posts extends Component {
       )
     } else {
       return (
-        <div>
+        <div className="centerDefault">
+          <h3>{locationName}</h3>
           <button onClick={this.handleAddClick}>Add this location to my newsfeed</button>
           <button onClick={this.handleRemoveClick}>Remove this location from my newsfeed</button>
           <CreatePostContainer locationId={locationId} />

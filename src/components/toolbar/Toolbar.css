@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: darkorchid;
+  background: rgb(50, 181, 204);
   height: 56px;
 }
 
@@ -46,7 +46,7 @@
 
 .toolbar_navigation-items a:hover,
 .toolbar_navigation-items a:active {
-  color: orange;
+  color: rgb(200, 255, 0);
 }
 
 @media (max-width: 768px) {
