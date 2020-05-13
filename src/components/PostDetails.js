@@ -11,18 +11,18 @@ class PostDetails extends Component {
 
   render() {
     if (!this.props.postsList) {
-      return <p>Loading...</p>
+      return <p className="loadingDefault">Loading...</p>
     }
 
     const thisPost = this.props.postsList.find(post => post.id === parseInt(this.props.match.params.id))
     if (!thisPost) {
-      return <p>Loading...</p>
+      return <p className="loadingDefault">Loading...</p>
     }
 
     const postId = parseInt(this.props.match.params.id)
 
     return (
-      <div>
+      <div className="centerDefault">
         <h3>{thisPost.title}</h3>
         <p>{thisPost.content}</p>
         <p>posted by {thisPost.userId} at the following time: {thisPost.createdAt}</p>

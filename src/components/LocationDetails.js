@@ -18,8 +18,7 @@ class LocationDetails extends Component {
 
     return (
       <div>
-        <h3>{findLocation.name}</h3>
-        <Posts locationId={locationId} />
+        <Posts locationId={locationId} locationName={findLocation.name} />
       </div>
     )
   }
