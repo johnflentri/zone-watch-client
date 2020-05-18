@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AuthFormContainer from './AuthFormContainer'
+import LogInFormContainer from './LogInFormContainer'
 import { connect } from 'react-redux'
 import { login } from '../actions'
 
@@ -9,7 +9,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    return <AuthFormContainer
+    return <LogInFormContainer
       submit={this.submit}
       title='Log in'
     />
