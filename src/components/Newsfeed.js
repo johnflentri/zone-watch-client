@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCurrentUser, getPosts, getLocations } from "../actions";
+import Moment from 'react-moment'
 
 class Newsfeed extends Component {
   componentDidMount() {
@@ -11,24 +12,26 @@ class Newsfeed extends Component {
   }
 
   render() {
-    if (!this.props.postsList) {
-      return <div>Loading...</div>
+    console.log("props?", this.props)
+    if (!this.props.postsList && !this.props.locationsList) {
+      return <div className="loadingDefault">Loading...</div>
     }
 
     const mappedPosts = this.props.postsList.map(post => (
       <div key={post.id}>
         <ul>
-          <span><Link to={`/posts/${post.id}`}>{post.title} </Link> from location: {post.locationId}</span>
-          <p>Posted by user: {post.userId}</p>
-          <p>Date and time of post: {post.createdAt}</p>
+          <p>Title: <Link to={`/posts/${post.id}`}>{post.title} </Link></p>
+          <p>Zone Channel: <Link to={`/locationPosts/${post.locationId}`}>{this.props.locationsList[post.locationId - 1].name}</Link></p>
+          <p>Posted by {this.props.currentUser.users[post.userId - 1].username}, <Moment parse="YYYY-MM-DD HH:mm">{post.createdAt}</Moment></p>
+          <br></br>
         </ul>
       </div>
     ))
 
     return (
       <div>
-        <h4>Newsfeed:</h4>
-        {mappedPosts.reverse()}
+        <h3 className="pageHeading">Newsfeed</h3>
+        {mappedPosts}
       </div>
     );
   }
@@ -37,7 +40,7 @@ class Newsfeed extends Component {
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
   postsList: state.posts,
-  locationsList: state.locations
+  locationsList: state.locations,
 });
 
 const mapDispatchToProps = { getCurrentUser, getPosts, getLocations };

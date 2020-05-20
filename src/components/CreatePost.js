@@ -6,7 +6,7 @@ export default class CreatePost extends Component {
       <div>
         <form onSubmit={this.props.onSubmit}>
           <label>
-            Add a post :
+            Create a post:
             <input
               type="text"
               name="title"

@@ -1,24 +1,42 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
-import { getLocationPosts, addLocation, removeLocation } from '../actions'
+import { getLocationPosts, addLocation, removeLocation, getCurrentUser } from '../actions'
 import CreatePostContainer from './CreatePostContainer';
+import Moment from 'react-moment'
 
 class Posts extends Component {
   componentDidMount() {
     this.props.getLocationPosts();
+    this.props.getCurrentUser();
   }
 
   handleAddClick = event => {
     event.preventDefault()
+    let unmounted = false
     const { locationId } = this.props
-    this.props.addLocation(locationId)
+
+    if (!unmounted) {
+      this.props.addLocation(locationId)
+    }
+
+    return () => {
+      unmounted = true
+    }
   }
 
   handleRemoveClick = event => {
     event.preventDefault()
+    let unmounted = false
     const { locationId } = this.props
-    this.props.removeLocation(locationId)
+
+    if (!unmounted) {
+      this.props.removeLocation(locationId)
+    }
+
+    return () => {
+      unmounted = true
+    }
   }
 
   render() {
@@ -33,40 +51,33 @@ class Posts extends Component {
       <div key={post.id}>
         <ul>
           <Link to={`/posts/${post.id}`}>{post.title} </Link>
-          <p>Posted by user: {post.userId}</p>
-          <p>Date and time of post: {post.createdAt}</p>
+          <p>- {this.props.currentUser.users[post.userId - 1].username}, <Moment>{post.createdAt}</Moment></p>
         </ul>
       </div>
     ))
 
-    if (!this.props.user) {
-      return (
-        <div className="centerDefault">
-          <button>Add this location to my newsfeed</button>
-          <h4>Posts:</h4>
-          {mappedPosts}
+    return (
+      <div className="centerDefault">
+        <h3 className="pageHeading">{locationName}</h3>
+        <div className="regularButton">
+          <button onClick={this.handleAddClick}>Add to My Newsfeed</button>
+          <button onClick={this.handleRemoveClick}>Remove from My Newsfeed</button>
         </div>
-      )
-    } else {
-      return (
-        <div className="centerDefault">
-          <h3>{locationName}</h3>
-          <button onClick={this.handleAddClick}>Add this location to my newsfeed</button>
-          <button onClick={this.handleRemoveClick}>Remove this location from my newsfeed</button>
-          <CreatePostContainer locationId={locationId} />
-          <h4>Posts:</h4>
-          {mappedPosts}
-        </div>
-      )
-    }
+        <br></br>
+        <CreatePostContainer locationId={locationId} />
+        <h4>Posts:</h4>
+        {mappedPosts}
+      </div>
+    )
   }
 }
 
 const mapStateToProps = state => ({
   postsList: state.posts,
-  user: state.user
+  user: state.user,
+  currentUser: state.user.currentUser
 });
 
-const mapDispatchToProps = { getLocationPosts, addLocation, removeLocation };
+const mapDispatchToProps = { getLocationPosts, addLocation, removeLocation, getCurrentUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

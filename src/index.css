@@ -17,6 +17,14 @@ body {
   padding: 1rem;
 }
 
+.pageHeading {
+  text-align: center;
+}
+
 .loadingDefault {
+  text-align: center;
+}
+
+.regularButton {
   text-align: center;
 }

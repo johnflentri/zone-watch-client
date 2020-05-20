@@ -6,25 +6,25 @@ export default class CreateLocation extends Component {
       <div>
         <form onSubmit={this.props.onSubmit}>
           <label>
-            Add a location :
+            Create a channel:
             <input
               type="text"
               name="name"
-              placeholder="name"
+              placeholder="Name"
               value={this.props.values.name}
               onChange={this.props.onChange}
             />
             <input
               type="text"
               name="lat"
-              placeholder="lat"
+              placeholder="Latitude"
               value={this.props.values.lat}
               onChange={this.props.onChange}
             />
             <input
               type="text"
               name="lng"
-              placeholder="lng"
+              placeholder="Longitude"
               value={this.props.values.lng}
               onChange={this.props.onChange}
             />

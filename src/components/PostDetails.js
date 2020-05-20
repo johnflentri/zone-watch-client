@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getLocationPosts } from '../actions'
+import { getLocationPosts, getCurrentUser, getLocations } from '../actions'
+import { Link } from "react-router-dom";
 import Comments from './Comments';
 import CreateCommentContainer from './CreateCommentContainer';
+import Moment from 'react-moment'
 
 class PostDetails extends Component {
   componentDidMount() {
     this.props.getLocationPosts();
+    this.props.getCurrentUser();
+    this.props.getLocations();
   }
 
   render() {
@@ -20,13 +24,15 @@ class PostDetails extends Component {
     }
 
     const postId = parseInt(this.props.match.params.id)
+    const users = this.props.user.currentUser.users
 
     return (
       <div className="centerDefault">
-        <h3>{thisPost.title}</h3>
+        <h3 className="pageHeading"><Link to={`/locationPosts/${thisPost.locationId}`}>{this.props.locationsList[thisPost.locationId - 1].name}</Link></h3>
+        <h4>{thisPost.title}</h4>
         <p>{thisPost.content}</p>
-        <p>posted by {thisPost.userId} at the following time: {thisPost.createdAt}</p>
-        <Comments postId={postId} />
+        <p>- {this.props.user.currentUser.users[thisPost.userId - 1].username}, <Moment>{thisPost.createdAt}</Moment></p>
+        <Comments postId={postId} users={users} />
         <CreateCommentContainer postId={postId} />
       </div>
     )
@@ -35,9 +41,10 @@ class PostDetails extends Component {
 
 const mapStateToProps = state => ({
   postsList: state.posts,
-  user: state.user
+  user: state.user,
+  locationsList: state.locations
 });
 
-const mapDispatchToProps = { getLocationPosts };
+const mapDispatchToProps = { getLocationPosts, getCurrentUser, getLocations };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);

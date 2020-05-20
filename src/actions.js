@@ -11,6 +11,7 @@ export const NEW_COMMENT = "NEW_COMMENT"
 export const CURRENT_USER = 'CURRENT_USER'
 export const ADD_USER_LOCATION = 'ADD_USER_LOCATION'
 export const REMOVE_USER_LOCATION = 'REMOVE_USER_LOCATION'
+export const ALL_USER_LOCATIONS = 'ALL_USER_LOCATIONS'
 export const CREATE_LOCATION = 'CREATE_LOCATION'
 export const USER_GEO = 'USER_GEO'
 
@@ -176,6 +177,25 @@ export const getCurrentUser = () => (dispatch, getState) => {
       dispatch(action);
     });
 };
+
+function getUserLocations(payload) {
+  return {
+    type: ALL_USER_LOCATIONS,
+    payload
+  }
+}
+
+export const allUserLocations = () => (dispatch, getState) => {
+  const state = getState()
+  const { user } = state
+  request(`${baseUrl}/userLocations`)
+    .set('Authorization', `Bearer ${user.jwt}`)
+    .then(response => {
+      const action = getUserLocations(response.body)
+      dispatch(action)
+    })
+    .catch(console.error)
+}
 
 function addUserLocation(payload) {
   return {

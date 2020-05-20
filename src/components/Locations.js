@@ -92,7 +92,7 @@ class Locations extends Component {
 
     return (
       <div className="centerDefault">
-        <h4>Locations Page</h4>
+        <h3 className="pageHeading">Zone Channels</h3>
         <CreateLocationContainer />
         {mappedLocations}
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getComments } from '../actions'
+import Moment from 'react-moment'
 
 class Comments extends Component {
   componentDidMount() {
@@ -18,7 +19,9 @@ class Comments extends Component {
     const mappedcomments = commentsFilter.map(comment => (
       <div key={comment.id}>
         <ul>
-          <p>User {comment.userId} said "{comment.content}" at {comment.createdAt}</p>
+          <br></br>
+          <p>"{comment.content}"</p>
+          <p>- {this.props.users[comment.userId - 1].username}, <Moment>{comment.createdAt}</Moment></p>
         </ul>
       </div>
     ))

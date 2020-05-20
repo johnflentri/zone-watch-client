@@ -10,7 +10,7 @@ class LocationDetails extends Component {
 
   render() {
     if (this.props.locationsList.length === 0) {
-      return <p>Loading...</p>
+      return <p className="loadingDefault">Loading...</p>
     }
 
     const locationId = parseInt(this.props.match.params.id)
