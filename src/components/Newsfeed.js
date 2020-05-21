@@ -12,7 +12,6 @@ class Newsfeed extends Component {
   }
 
   render() {
-    console.log("props?", this.props)
     if (!this.props.postsList && !this.props.locationsList) {
       return <div className="loadingDefault">Loading...</div>
     }
@@ -21,8 +20,8 @@ class Newsfeed extends Component {
       <div key={post.id}>
         <ul>
           <p>Title: <Link to={`/posts/${post.id}`}>{post.title} </Link></p>
-          <p>Zone Channel: <Link to={`/locationPosts/${post.locationId}`}>{this.props.locationsList[post.locationId - 1].name}</Link></p>
-          <p>Posted by {this.props.currentUser.users[post.userId - 1].username}, <Moment parse="YYYY-MM-DD HH:mm">{post.createdAt}</Moment></p>
+          <p>Zone Channel: <Link to={`/locationPosts/${post.locationId}`}>{this.props.locationsList.find(location => location.id === post.locationId).name}</Link></p>
+          <p>Posted by {this.props.currentUser.users.find(user => user.id === post.userId).username}, <Moment parse="YYYY-MM-DD HH:mm">{post.createdAt}</Moment></p>
           <br></br>
         </ul>
       </div>
@@ -31,7 +30,7 @@ class Newsfeed extends Component {
     return (
       <div>
         <h3 className="pageHeading">Newsfeed</h3>
-        {mappedPosts}
+        {mappedPosts.reverse()}
       </div>
     );
   }

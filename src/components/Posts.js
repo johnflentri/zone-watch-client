@@ -51,7 +51,7 @@ class Posts extends Component {
       <div key={post.id}>
         <ul>
           <Link to={`/posts/${post.id}`}>{post.title} </Link>
-          <p>- {this.props.currentUser.users[post.userId - 1].username}, <Moment>{post.createdAt}</Moment></p>
+          <p>- {this.props.currentUser.users.find(user => user.id === post.userId).username}, <Moment>{post.createdAt}</Moment></p>
         </ul>
       </div>
     ))
@@ -66,7 +66,7 @@ class Posts extends Component {
         <br></br>
         <CreatePostContainer locationId={locationId} />
         <h4>Posts:</h4>
-        {mappedPosts}
+        {mappedPosts.reverse()}
       </div>
     )
   }

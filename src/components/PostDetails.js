@@ -28,10 +28,10 @@ class PostDetails extends Component {
 
     return (
       <div className="centerDefault">
-        <h3 className="pageHeading"><Link to={`/locationPosts/${thisPost.locationId}`}>{this.props.locationsList[thisPost.locationId - 1].name}</Link></h3>
+        <h3 className="pageHeading"><Link to={`/locationPosts/${thisPost.locationId}`}>{this.props.locationsList.find(location => location.id === thisPost.locationId).name}</Link></h3>
         <h4>{thisPost.title}</h4>
         <p>{thisPost.content}</p>
-        <p>- {this.props.user.currentUser.users[thisPost.userId - 1].username}, <Moment>{thisPost.createdAt}</Moment></p>
+        <p>- {this.props.user.currentUser.users.find(user => user.id === thisPost.userId).username}, <Moment>{thisPost.createdAt}</Moment></p>
         <Comments postId={postId} users={users} />
         <CreateCommentContainer postId={postId} />
       </div>

@@ -21,7 +21,7 @@ class Comments extends Component {
         <ul>
           <br></br>
           <p>"{comment.content}"</p>
-          <p>- {this.props.users[comment.userId - 1].username}, <Moment>{comment.createdAt}</Moment></p>
+          <p>- {this.props.users.find(user => user.id === comment.userId).username}, <Moment>{comment.createdAt}</Moment></p>
         </ul>
       </div>
     ))
