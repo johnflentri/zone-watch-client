@@ -1,6 +1,6 @@
 ## Zone Watch 
 
-<a href="https://pedantic-wing-448aa1.netlify.app/">Click here to check out the deployed version!</a>
+<a href="https://pedantic-wing-448aa1.netlify.app/" target="_blank">Click here to check out the deployed version!</a>
 
 ### `About this app`
 
