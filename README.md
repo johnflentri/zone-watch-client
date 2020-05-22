@@ -1,6 +1,6 @@
 ## Zone Watch 
 
-<a href="https://pedantic-wing-448aa1.netlify.app/" target="_blank">Click here to check out the deployed version!</a>
+<a href="https://zonewatch.netlify.app/" rel="nofollow">Click here to check out the deployed version!</a>
 
 ### `About this app`
 
@@ -12,7 +12,7 @@ Zone Watch is a location-based communication platform. The feature that distingu
 
 Create an account and subscribe to your zones!
 
-Upon log in, the user will receive an ordered list of zone channels, beginning with the closest in proximity based on their geo-location.
+Upon log in, the user can find an ordered list of zone channels, beginning with the closest in proximity based on their geo-location.
 
 Users can also create a zone channel if one does not already exist for their intended purpose.
 
