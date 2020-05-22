@@ -28,6 +28,7 @@ Users can also create a zone channel if one does not already exist for their int
 </ul>
 
 ### `App demo`
+![zoneWatchDemo](https://user-images.githubusercontent.com/54505503/82678394-d2b75f80-9c49-11ea-9ae2-f1f4723740b8.gif)
 
 ### `Technology used`
 
