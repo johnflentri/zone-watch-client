@@ -20,8 +20,8 @@ Users can also create a zone channel if one does not already exist for their int
 
 <ul>
 <li><a href="#app-demo">App demo</a></li>
-<li><a href="#technology-user">Technology used</a></li>
-<li><a href="#goals-for-this-project">Goals for this project</a></li>
+<li><a href="#technology-used">Technology used</a></li>
+<li><a href="#goal-for-this-project">Goals for this project</a></li>
 <li><a href="#user-stories-and-wireframe">User stories and Wireframe</a></li>
 <li><a href="#git-workflow">Git workflow</a></li>
 <li><a href="#server-repository">Server repository</a></li>
@@ -64,7 +64,6 @@ This includes practicing and recognizing the importance of:
 ### `Git workflow`
 
 In this project I implement:
-
 - Concise commit messages
 - Descriptive branch names
 
