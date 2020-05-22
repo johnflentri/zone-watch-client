@@ -7,7 +7,7 @@ import Newsfeed from './Newsfeed'
 class Homepage extends Component {
   render() {
     if (this.props.user) {
-      return <div className="centerDefault">
+      return <div>
         <Newsfeed />
       </div>
     } else

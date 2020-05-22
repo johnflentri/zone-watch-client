@@ -1,5 +1,4 @@
 import React from 'react'
-
 import LogInAuth from './LogInAuth'
 
 export default class LogInFormContainer extends React.Component {

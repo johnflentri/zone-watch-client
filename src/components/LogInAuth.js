@@ -19,7 +19,7 @@ export default class AuthForm extends React.Component {
         type='text'
         value={user.password}
       />
-      <button>{label}</button>
+      <button className="regBtn">{label}</button>
     </form>
   }
 }

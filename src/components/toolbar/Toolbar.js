@@ -15,8 +15,8 @@ const toolbar = props => (
       <div className="spacer"></div>
       <div className="toolbar_navigation-items">
         <ul>
-          <li><Link to={`/`}>My Newsfeed</Link></li>
-          <li><Link to={`/Locations`}>Zone Channels</Link></li>
+          <li><Link to={`/home`}>My Newsfeed</Link></li>
+          <li><Link to={`/locations`}>Zone Channels</Link></li>
         </ul>
       </div>
     </nav>

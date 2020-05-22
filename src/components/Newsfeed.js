@@ -28,7 +28,7 @@ class Newsfeed extends Component {
     ))
 
     return (
-      <div>
+      <div className="centerDefault">
         <h3 className="pageHeading">Newsfeed</h3>
         {mappedPosts.reverse()}
       </div>

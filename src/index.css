@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  background: rgb(206, 206, 206);
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -10,15 +11,18 @@ body {
 }
 
 .centerDefault {
+  background-color: white;
   width: 90%;
   max-width: 40rem;
   margin: 2rem auto;
-  border: 1px solid #ccc;
+  border: 1.5px solid blue;
+  border-radius: 10px;
   padding: 1rem;
 }
 
 .pageHeading {
   text-align: center;
+  color: blue;
 }
 
 .loadingDefault {
@@ -27,4 +31,38 @@ body {
 
 .regularButton {
   text-align: center;
+}
+
+.regBtn:hover {
+  color: blue;
+}
+
+.regBtn:active {
+  background-color: rgb(189, 189, 255);
+  border-radius: 5px;
+  transform: translateY(3px);
+}
+
+.commentContent {
+  width: 89%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #999999;
+  padding: 5px;
+}
+
+.postTitle {
+  width: 89%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid #999999;
+  padding: 5px;
+}
+
+.postContent {
+  width: 89%;
+  height: 60px;
+  border-radius: 5px;
+  border: 1px solid #999999;
+  padding: 5px;
 }

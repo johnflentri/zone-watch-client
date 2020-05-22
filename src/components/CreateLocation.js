@@ -29,7 +29,7 @@ export default class CreateLocation extends Component {
               onChange={this.props.onChange}
             />
           </label>
-          <input type="submit" value="Submit" />
+          <input className="regBtn" type="submit" value="Submit" />
         </form>
       </div>
     );

@@ -7,14 +7,14 @@ export default class CreatePost extends Component {
         <form onSubmit={this.props.onSubmit}>
           <label>
             Create a post:
-            <input
+            <input className="postTitle"
               type="text"
               name="title"
               placeholder="title"
               value={this.props.values.title}
               onChange={this.props.onChange}
             />
-            <input
+            <textarea className="postContent"
               type="text"
               name="content"
               placeholder="content"
@@ -22,7 +22,7 @@ export default class CreatePost extends Component {
               onChange={this.props.onChange}
             />
           </label>
-          <input type="submit" value="Submit" />
+          <input className="regBtn" type="submit" value="Submit" />
         </form>
       </div>
     );

@@ -60,8 +60,8 @@ class Posts extends Component {
       <div className="centerDefault">
         <h3 className="pageHeading">{locationName}</h3>
         <div className="regularButton">
-          <button onClick={this.handleAddClick}>Add to My Newsfeed</button>
-          <button onClick={this.handleRemoveClick}>Remove from My Newsfeed</button>
+          <button className="regBtn" onClick={this.handleAddClick}>Add to My Newsfeed</button>
+          <button className="regBtn" onClick={this.handleRemoveClick}>Remove from My Newsfeed</button>
         </div>
         <br></br>
         <CreatePostContainer locationId={locationId} />
