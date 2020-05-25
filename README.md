@@ -1,4 +1,6 @@
-## Zone Watch
+## Zone Watch 
+
+<a href="https://zonewatch.netlify.app/" rel="nofollow">Click here to check out the deployed version!</a>
 
 ### `About this app`
 
@@ -10,7 +12,7 @@ Zone Watch is a location-based communication platform. The feature that distingu
 
 Create an account and subscribe to your zones!
 
-Upon log in, the user will receive an ordered list of zone channels, beginning with the closest in proximity based on their geo-location.
+Upon log in, the user can find an ordered list of zone channels, beginning with the closest in proximity based on their geo-location.
 
 Users can also create a zone channel if one does not already exist for their intended purpose.
 
@@ -18,14 +20,15 @@ Users can also create a zone channel if one does not already exist for their int
 
 <ul>
 <li><a href="#app-demo">App demo</a></li>
-<li><a href="#technology-user">Technology used</a></li>
-<li><a href="#goals-for-this-project">Goals for this project</a></li>
+<li><a href="#technology-used">Technology used</a></li>
+<li><a href="#goal-for-this-project">Goal for this project</a></li>
 <li><a href="#user-stories-and-wireframe">User stories and Wireframe</a></li>
 <li><a href="#git-workflow">Git workflow</a></li>
 <li><a href="#server-repository">Server repository</a></li>
 </ul>
 
 ### `App demo`
+![zoneWatchDemo](https://user-images.githubusercontent.com/54505503/82678394-d2b75f80-9c49-11ea-9ae2-f1f4723740b8.gif)
 
 ### `Technology used`
 
@@ -62,7 +65,6 @@ This includes practicing and recognizing the importance of:
 ### `Git workflow`
 
 In this project I implement:
-
 - Concise commit messages
 - Descriptive branch names
 
