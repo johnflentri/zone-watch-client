@@ -15,7 +15,6 @@ export const ALL_USER_LOCATIONS = 'ALL_USER_LOCATIONS'
 export const CREATE_LOCATION = 'CREATE_LOCATION'
 export const USER_GEO = 'USER_GEO'
 
-// export const baseUrl = 'http://localhost:4000'
 export const baseUrl = 'https://hidden-headland-87450.herokuapp.com'
 
 function loggedIn(jwt) {
