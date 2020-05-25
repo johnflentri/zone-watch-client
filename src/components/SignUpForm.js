@@ -1,8 +1,7 @@
 import React from 'react'
 import superagent from 'superagent'
 import AuthFormContainer from './AuthFormContainer'
-
-const baseUrl = 'http://localhost:4000'
+import { baseUrl } from '../actions'
 
 export default class SignupForm extends React.Component {
   submit = async (username, email, password) => {
